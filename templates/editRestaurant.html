@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'includes/header.html' %}
+    <meta charset="UTF-8">
+    <title>Restaurant | Edit</title>
+</head>
+<body>
+
+<div class="main">
+    <div class="container">
+        <div class="edit-item">
+            <h1>Edit Restaurant: <span class="title">{{ restaurant.name }}</span></h1>
+            <form action="{{ url_for('edit_restaurant', restaurant_id=restaurant_id) }}" method="post">
+                <div class="form-group">
+                    <label for="" class="title">Name: </label>
+                    <input type="text" class="form-control" placeholder="New Name" name="name" required>
+                </div>
+                <input class="btn btn-success" type="submit" value="Edit">
+                <a class="btn btn-primary" type="button" role="button" href="{{ url_for('index') }}">Cancel</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% include 'includes/scripts.html' %}
+</body>
+</html>

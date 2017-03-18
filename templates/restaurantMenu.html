@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'includes/header.html' %}
+    <meta charset="UTF-8">
+    <title>Restaurant | Menu</title>
+</head>
+<body>
+<div class="main">
+    <div class="container">
+        <div class="jumbotron presentation">
+
+            <h1 class="title">{{ restaurant.name }} Menu</h1>
+
+            <!--BACK BTN-->
+            <div class="pull-left">
+                <a class="btn btn-primary" href="{{ url_for('index') }}">Back</a>
+            </div>
+
+            <!--CREATE BTN-->
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{ url_for('new_restaurant_menu', restaurant_id=restaurant_id) }}">Add
+                    new Menu Item</a>
+            </div>
+
+            <!--FLOAT CLEAR-->
+            <div class="clearfix"></div>
+
+
+            <!--FLASH MESSAGE-->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class='alert alert-info alert-dismissable'>
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <!--MENU ITEM-->
+            {% for menuItem in menu %}
+                <div class="menu-item">
+                    <h2 class="title">{{ menuItem.name }}</h2>
+                    <p>Price: <span class="title">{{ menuItem.price }}</span></p>
+                    <p>Description: <span class="title">{{ menuItem.description }}</span></p>
+                    <a class="btn btn-warning"
+                       href="{{ url_for('edit_restaurant_menu', restaurant_id=restaurant_id, menu_id=menuItem.id) }}">Edit</a>
+                    <a class="btn btn-danger"
+                       href="{{ url_for('delete_restaurant_menu', restaurant_id=restaurant_id, menu_id=menuItem.id) }}">Delete</a>
+                    </br>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% include 'includes/scripts.html' %}
+</body>
+</html>
