@@ -3,6 +3,7 @@ from flask import render_template, request, url_for, redirect, flash, jsonify
 from database_setup import db, Restaurant, MenuItem
 
 app = Flask(__name__)
+
 app.secret_key = 'super secret key'
 
 # For database stuff
